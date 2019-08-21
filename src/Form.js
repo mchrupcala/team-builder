@@ -1,15 +1,42 @@
-import React from "react";
+import React, {useState} from "react";
 
-function Form() {
+
+const Form = props => {
+    const [userData, setUserData] = useState({firstName: '', lastName: '', email: '', role: ''});
+
+const changeHandler = event => {
+    console.log(event.target.value);
+
+    setUserData({...userData, [event.target.name]: event.target.value })
+}
+    return (
   <form>
-    <input />
+    <input 
+    type="text" 
+    name="firstName" 
+    value="firstName"
+    // onChange= 
+    />
 
-    <input />
+    <input 
+    type="text" 
+    name="lastName" 
+    value="lastName" />
 
-    <input />
+    <input 
+    type="text" 
+    name="email" 
+    value="email" />
 
-    <submit />
-  </form>;
+    <input
+    type="text" 
+    name="role" 
+    value="role"
+    />
+
+    <button type="submit">Add Team!</button>
+  </form>
+  );
 }
 
 export default Form;
