@@ -8,18 +8,27 @@ import Form from "./Form";
 const App = props => {
   const [member, setMember] = useState(data);
 
+  const addMember = newMember => {
+    setMember([...member, newMember])
+  };
+
   return (
     <div className="App">
       {console.log(member)}
-      <Form />
+
+      <Form addMember={addMember}/>
+
       {member.map(item => {
         return (
           <div>
+            <hr></hr>
             <h2>
               {item.firstName} {item.lastName}
             </h2>
             <p>Email: {item.email}</p>
             <br />
+            <button>Edit</button>
+            <hr></hr>
           </div>
         );
       })}

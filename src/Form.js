@@ -9,30 +9,50 @@ const changeHandler = event => {
 
     setUserData({...userData, [event.target.name]: event.target.value })
 }
+const submitForm = event => {
+    event.preventDefault();
+    const newMember = {
+        ...userData,
+        id: Date.now()
+    };
+    
+    props.addMember(newMember);
+    setUserData({firstName: "", lastName: "", email: "", role: ""});
+
+};
     return (
-  <form>
+  <form onSubmit={submitForm}>
     <input 
     type="text" 
     name="firstName" 
-    value="firstName"
-    // onChange= 
-    />
+    placeholder="First Name here."
+    value= {props.firstName}
+    onChange={changeHandler} 
+    /> <br></br>
 
     <input 
     type="text" 
     name="lastName" 
-    value="lastName" />
+    placeholder="Last Name here."
+    value={props.lastName}
+    onChange={changeHandler} 
+     /> <br></br>
 
     <input 
     type="text" 
-    name="email" 
-    value="email" />
+    name="email"
+    placeholder="Email here." 
+    value={props.email} 
+    onChange={changeHandler} 
+    /> <br></br>
 
     <input
     type="text" 
     name="role" 
-    value="role"
-    />
+    placeholder="Role here."
+    value={props.role}
+    onChange={changeHandler} 
+    /> <br></br>
 
     <button type="submit">Add Team!</button>
   </form>
