@@ -5,21 +5,30 @@ import data from "./data";
 import { useState } from "react";
 import Form from "./Form";
 
-const App = props => {
+ function App() {
+   //setting the state --> member receives the initial data from data.js
   const [member, setMember] = useState(data);
 
+  //calls setMember to update the state. Includes all original data, adds new input.
   const addMember = newMember => {
     setMember([...member, newMember])
   };
+
+  const [memberToEdit, setMemberToEdit] = useState();
 
   return (
     <div className="App">
       {console.log(member)}
 
-      <Form addMember={addMember}/>
+      <Form 
+      //Passes the addMember function as a prop to Form.js.
+      addMember={addMember}
+      memberToEdit={memberToEdit}/>
+      
 
       {member.map(item => {
-        return (
+        //Receives the array of objects from member...then renders it as a card for each team member.
+      return (
           <div>
             <hr></hr>
             <h2>
@@ -37,5 +46,3 @@ const App = props => {
 };
 
 export default App;
-
-//List of if I have time: want to build a unique key value for each, like in Christina's walkthrough from today.
